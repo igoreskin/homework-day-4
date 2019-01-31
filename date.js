@@ -11,8 +11,16 @@ const dateAndTime = () => {
     const month = date.getMonth() + 1;
     let minutes = date.getMinutes();
     minutes = (minutes < 10 ? "0" : "") + minutes;
+
     let hours = date.getHours();
-    hours = (hours > 12 ? `${hours - 12}:${minutes} PM` : `${hours}:${minutes} AM`);
+    if(hours >= 12) {
+        hours = `${hours - 12}:${minutes} PM`
+    } else if(hours == 0) {
+        hours = `12:${minutes} AM`
+    } else {
+        hours = `${hours}:${minutes} AM`
+    }
+
     const year = date.getFullYear();
 
     return `The date and time are currently: ${month}/${day}/${year}, ${hours}`
